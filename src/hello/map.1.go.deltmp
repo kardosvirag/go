@@ -1,0 +1,51 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// key: UIDs value:sem_contact_name
+	expectedUIDs := map[string]string{
+		"92379": "Kauningerhof",
+		"30037": "Die kleine Gärtnerei",
+		"256":   "Blatt und Blüte",
+		"175":   "Fictive Tile",
+		"195":   "Second Fictive Tile",
+	}
+
+	actuelUIDs := map[string]string{
+		"92379": "Kauningerhof",
+		"256":   "Blatt und Blüte",
+		"30037": "Die kleine Gärtnerei",
+	}
+
+	fmt.Println("")
+	fmt.Println(expectedUIDs)
+	fmt.Println("blumen search result...\n")
+
+	// fmt.Println("expected tiles iterate: ")
+	// for key, value := range expectedUIDs {
+	// 	fmt.Println(key, value)
+	// }
+
+	for key := range expectedUIDs {
+		failResult := 0
+		expectedUID := key
+		fmt.Println("")
+		fmt.Println("expected: ", expectedUID)
+		for key := range actuelUIDs {
+			// fmt.Println(key)
+			if key == expectedUID {
+				fmt.Println(key, "exist")
+			} else {
+				failResult = failResult + 1
+			}
+		}
+		if failResult == len(expectedUID) {
+			fmt.Println(expectedUID, " does not exist")
+		}
+	}
+
+	fmt.Println("")
+}
